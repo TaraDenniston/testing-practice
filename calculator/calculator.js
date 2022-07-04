@@ -32,6 +32,7 @@ function setupIntialValues() {
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
+  updateMonthly(calculateMonthlyPayment(getCurrentUIValues()));
 }
 
 // Given an object of values (a value has amount, years and rate ),
@@ -42,21 +43,7 @@ function calculateMonthlyPayment(values) {
   const i = (values.rate / 100) / 12;
   const n = values.years * 12;
 
-  console.log(`P: ${P}, i: ${i}, n: ${n}`); // testing...........................
-  console.log(`P * i: ${P * i}`); // testing.....................................
-  console.log(`Math.pow(1 + i, n): ${Math.pow(1 + i, n)}`); // testing...........
-  console.log(`1 / (Math.pow(1 + i, n)): ${1 / (Math.pow(1 + i, n))}`); // testing
-  console.log(`1 - (1 / (Math.pow(1 + i, n))): ${1 - (1 / (Math.pow(1 + i, n)))}`);
-  console.log(`(P * i) / (1 - (1 / (Math.pow(1 + i, n)))): ${(P * i) / (1 - (1 / (Math.pow(1 + i, n))))}`);
-  console.log(((P * i) / (1 - (1 / (Math.pow(1 + i, n))))) * 100);
-  console.log(Math.round(
-    (((P * i) / 
-      (1 - (1 / (Math.pow(1 + i, n)))))
-      * 100)       
-  ) / 100)
-
-
-  return toString(
+  return (
     Math.round(
       (((P * i)                              //       P * i
         /                                    //   --------------
@@ -69,4 +56,5 @@ function calculateMonthlyPayment(values) {
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
 function updateMonthly(monthly) {
+  document.getElementById("monthly-payment").innerText = `$${monthly}`;
 }
