@@ -42,14 +42,19 @@ function calculateMonthlyPayment(values) {
   const i = (values.rate / 100) / 12;
   const n = values.years * 12;
 
-  return (
-    Math.round(
-      (((P * i)                              //       P * i
-        /                                    //   --------------
-        (1 - (1 / (Math.pow(1 + i, n)))))    //   1 - (1 + i)^-n
-        * 100)       
-    ) / 100
-  );
+  const pmt = (P * i)                            //       P * i
+              /                                  //   --------------
+              (1 - (1 / (Math.pow(1 + i, n))));  //   1 - (1 + i)^-n
+
+  return pmt.toFixed(2);
+  // return (
+  //   Math.round(
+  //     (((P * i)                              //       P * i
+  //       /                                    //   --------------
+  //       (1 - (1 / (Math.pow(1 + i, n)))))    //   1 - (1 + i)^-n
+  //       * 100)       
+  //   ) / 100
+  // );
 }
 
 // Given a string representing the monthly payment value,
