@@ -25,8 +25,7 @@ function setupIntialValues() {
   document.getElementById("loan-years").value = 5;
   document.getElementById("loan-rate").value = 5.25;
 
-  calculateMonthlyPayment({amount: 20000, years: 5, rate: 5.25});
-  
+  update();
 }
 
 // Get the current values from the UI
