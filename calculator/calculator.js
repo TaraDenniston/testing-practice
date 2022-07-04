@@ -26,6 +26,7 @@ function setupIntialValues() {
   document.getElementById("loan-rate").value = 5.25;
 
   calculateMonthlyPayment({amount: 20000, years: 5, rate: 5.25});
+  
 }
 
 // Get the current values from the UI
@@ -37,7 +38,32 @@ function update() {
 // calculate the monthly payment.  The output should be a string
 // that always has 2 decimal places.
 function calculateMonthlyPayment(values) {
+  const P = values.amount;
+  const i = (values.rate / 100) / 12;
+  const n = values.years * 12;
 
+  console.log(`P: ${P}, i: ${i}, n: ${n}`); // testing...........................
+  console.log(`P * i: ${P * i}`); // testing.....................................
+  console.log(`Math.pow(1 + i, n): ${Math.pow(1 + i, n)}`); // testing...........
+  console.log(`1 / (Math.pow(1 + i, n)): ${1 / (Math.pow(1 + i, n))}`); // testing
+  console.log(`1 - (1 / (Math.pow(1 + i, n))): ${1 - (1 / (Math.pow(1 + i, n)))}`);
+  console.log(`(P * i) / (1 - (1 / (Math.pow(1 + i, n)))): ${(P * i) / (1 - (1 / (Math.pow(1 + i, n))))}`);
+  console.log(((P * i) / (1 - (1 / (Math.pow(1 + i, n))))) * 100);
+  console.log(Math.round(
+    (((P * i) / 
+      (1 - (1 / (Math.pow(1 + i, n)))))
+      * 100)       
+  ) / 100)
+
+
+  return toString(
+    Math.round(
+      (((P * i)                              //       P * i
+        /                                    //   --------------
+        (1 - (1 / (Math.pow(1 + i, n)))))    //   1 - (1 + i)^-n
+        * 100)       
+    ) / 100
+  );
 }
 
 // Given a string representing the monthly payment value,
