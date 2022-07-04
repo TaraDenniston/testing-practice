@@ -47,14 +47,6 @@ function calculateMonthlyPayment(values) {
               (1 - (1 / (Math.pow(1 + i, n))));  //   1 - (1 + i)^-n
 
   return pmt.toFixed(2);
-  // return (
-  //   Math.round(
-  //     (((P * i)                              //       P * i
-  //       /                                    //   --------------
-  //       (1 - (1 / (Math.pow(1 + i, n)))))    //   1 - (1 + i)^-n
-  //       * 100)       
-  //   ) / 100
-  // );
 }
 
 // Given a string representing the monthly payment value,
