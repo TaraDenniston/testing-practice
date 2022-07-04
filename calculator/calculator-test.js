@@ -1,35 +1,3 @@
-/********setup initial values**********/
-describe('test setupInitialValues', function() {
-  beforeAll(function() {
-    setupInitialValues();
-    // window.addEventListener('DOMContentLoaded', function() {
-    //   setupIntialValues();
-    // });
-  });
-  
-  it('should populate defaults into input fields on DOM load'), function() {
-    expect(document.getElementById("loan-amount").value).toBe(10000);
-    expect(document.getElementById("loan-years").value).toEqual(6);
-    expect(document.getElementById("loan-rate").value).toEqual(loan-rate);
-  }
-
-  it('should display monthly payment'), function() {
-    expect(document.getElementById("monthly-payment").value).toEqual('379.72');
-  }
-})
-
-
-/********when calculate button is clicked********* */
-// should display the monthly payment 
-// should display the correct format
-
-
-/*********get user input*********/
-// should create object properly
-// should handle incorrect input
-
-
-/********calculate monthly payment**********/
 describe('test calculateMonthlyPayment()', function() {
   it('should calculate the monthly payment correctly', function() {
     expect(calculateMonthlyPayment({amount: 10000, years: 3, rate: 6})).toEqual('304.22');
@@ -41,8 +9,10 @@ describe('test calculateMonthlyPayment()', function() {
   it("should return a result with 2 decimal places", function() {
     expect(calculateMonthlyPayment({amount: 186282, years: 30, rate: 5})).toMatch(/\d\.\d\d$/);
   });  
+
+  it('should throw an error when user input is invalid', function () {
+    expect(() => calculateMonthlyPayment({amount: 'alkjfw', years: 5, rate: 5})).toThrowError();
+    expect(() => calculateMonthlyPayment({amount: 20000, years: 'lwiwfr', rate: 5})).toThrowError();
+    expect(() => calculateMonthlyPayment({amount: 20000, years: 5, rate: 'jwi j'})).toThrowError();
+  })
 })
-
-
-/*********update payment based on user input*********/
-// should update the monthly payment correctly
