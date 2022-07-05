@@ -1,6 +1,5 @@
 describe("Servers test (with setup and tear-down)", function() {
   beforeEach(function () {
-    // initialization logic
     serverNameInput.value = 'Alice';
   });
 
@@ -11,7 +10,18 @@ describe("Servers test (with setup and tear-down)", function() {
     expect(allServers['server' + serverId].serverName).toEqual('Alice');
   });
 
+  it('should create new tr element with two child tds on updateServerTable()', function() {
+    submitServerInfo();
+    updateServerTable();
+    let serverTds = document.querySelectorAll('#serverTable tbody td');
+
+    expect(serverTds[0].innerText).toEqual('Alice');
+    expect(serverTds[1].innerText).toEqual('$0.00');
+  });
+
   afterEach(function() {
-    // teardown logic
+    allServers = {};
+    serverId = 0;
+    updateServerTable();
   });
 });
