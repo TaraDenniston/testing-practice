@@ -5,7 +5,7 @@ describe('Test submitPaymentInfo()', function() {
         submitPaymentInfo();
     });
   
-    it('should increment paymentID', function () {
+    it('should increment paymentId', function () {
         expect(paymentId).toEqual(1);
     });
   
